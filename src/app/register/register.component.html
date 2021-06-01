@@ -1,0 +1,74 @@
+
+<form [formGroup]="loginForm" class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Registration!!!!</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+            
+                <mat-label>User Name</mat-label>
+                <input formControlName="UserName" matInput minlength="8">
+            
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              </mat-form-field>
+          </div> 
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label>Re-Enter your password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" formControlName="cnfpass">
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              </mat-form-field>
+          </div>  
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                     placeholder="Ex. pat@example.com" formControlName="email">
+              <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Please enter a valid email address
+              </mat-error>
+              <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error> -->
+              </mat-form-field>
+          </div>
+          <div class="col-md-6 top-padding">
+                <mat-form-field class="full-width" appearance="fill">
+                    <mat-label>Select DOB</mat-label>
+                    <input  formControlName="dob" matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>                  
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <mat-radio-group  formControlName="gender" class="margin-left">
+                    <mat-radio-button value="male"> Male </mat-radio-button>
+                    <mat-radio-button value="female"> Female </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="saveForm()" mat-raised-button color="primary">Save</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+ 
